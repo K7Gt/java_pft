@@ -1,2 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'application'
+mainClassName = "ru.stqa.pft.sandbox.Task2"
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'org.testng:testng:6.11'
+}
