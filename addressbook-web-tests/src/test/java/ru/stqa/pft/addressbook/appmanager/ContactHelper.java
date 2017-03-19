@@ -52,4 +52,12 @@ public class ContactHelper extends HelperBase {
     public void acceptAlertPopUp() {
         wd.switchTo().alert().accept();
     }
+
+    public void initContactModification() {
+        click(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
 }

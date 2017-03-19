@@ -36,9 +36,16 @@ public class GroupHelper extends HelperBase {
     }
 
     public void selectGroup() {
-        if (!checkSelection(By.name("selected[]"))) {
-            click(By.name("selected[]"));
+        if (!checkSelection(By.xpath("html/body/div[1]/div[4]/form/span[2]/input"))) {
+            click(By.xpath("html/body/div[1]/div[4]/form/span[1]/input"));
         }
     }
 
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
 }
