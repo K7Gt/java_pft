@@ -7,13 +7,13 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
-        app.gotoAddNewPage();
-        app.fillContactForm(new ContactDate("testname", "testmiddlename",
+        app.getContactHelper().gotoAddNewPage();
+        app.getContactHelper().fillContactForm(new ContactDate("testname", "testmiddlename",
                 "testlastname", "test", "testtitle", "testcompany",
                 "testaddressoftestcompany", "7777777", "7777777",
                 "7777777", "1111111", "test@gmail.com", "test.com"));
-        app.submitContactCreation();
-        app.gotoHomePage();
+        app.getContactHelper().submitContactCreation();
+        app.getNavigationHelper().gotoHomePage();
     }
 
 }
