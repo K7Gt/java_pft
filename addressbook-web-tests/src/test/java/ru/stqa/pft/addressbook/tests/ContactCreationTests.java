@@ -1,17 +1,19 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactDate;
+
 public class ContactCreationTests extends TestBase {
 
 
     @Test
     public void testContactCreation() {
-        gotoAddNewPage();
-        fillContactForm(new ContactDate("testname", "testmiddlename",
+        app.gotoAddNewPage();
+        app.fillContactForm(new ContactDate("testname", "testmiddlename",
                 "testlastname", "test", "testtitle", "testcompany",
                 "testaddressoftestcompany", "7777777", "7777777",
                 "7777777", "1111111", "test@gmail.com", "test.com"));
-        submitContactCreation();
-        gotoHomePage();
+        app.submitContactCreation();
+        app.gotoHomePage();
     }
 
 }
