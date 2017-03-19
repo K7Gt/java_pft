@@ -14,14 +14,18 @@ import org.openqa.selenium.*;
 
 public class GroupCreationTests {
     FirefoxDriver wd;
+    String file = "c:\\Firefox_for_course\\firefox.exe";
+    String url = "http://localhost/addressbook/";
+    String login = "admin";
+    String password = "secret";
     
     @BeforeMethod
     public void setUp() throws Exception {
-        FirefoxBinary binary = new FirefoxBinary(new File("c:\\Firefox_for_course\\firefox.exe"));
+        FirefoxBinary binary = new FirefoxBinary(new File(file));
         wd = new FirefoxDriver(binary, new FirefoxProfile());
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get("http://localhost/addressbook/");
-        login("admin", "secret");
+        wd.get(url);
+        login(login, password);
 
     }
 
