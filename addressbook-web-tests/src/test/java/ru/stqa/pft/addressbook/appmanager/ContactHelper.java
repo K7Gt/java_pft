@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.model.ContactDate;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 /**
  * Created by Golem on 19.03.2017.
@@ -18,20 +18,20 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void fillContactForm(ContactDate contactDate) {
-        type(By.name("firstname"), contactDate.getContactname());
-        type(By.name("middlename"), contactDate.getContactMiddleName());
-        type(By.name("lastname"), contactDate.getContactLastName());
-        type(By.name("nickname"), contactDate.getContactNickname());
-        type(By.name("title"), contactDate.getContactTitle());
-        type(By.name("company"), contactDate.getContactCompany());
-        type(By.name("address"), contactDate.getContactCompanyAddress());
-        type(By.name("home"), contactDate.getContactHomePhone());
-        type(By.name("mobile"), contactDate.getContactMobilePhone());
-        type(By.name("work"), contactDate.getContactWorkPhone());
-        type(By.name("fax"), contactDate.getContactFax());
-        type(By.name("email"), contactDate.getContactEmail());
-        type(By.name("homepage"), contactDate.getContactHomepage());
+    public void fillContactForm(ContactData contactData) {
+        type(By.name("firstname"), contactData.getContactname());
+        type(By.name("middlename"), contactData.getContactMiddleName());
+        type(By.name("lastname"), contactData.getContactLastName());
+        type(By.name("nickname"), contactData.getContactNickname());
+        type(By.name("title"), contactData.getContactTitle());
+        type(By.name("company"), contactData.getContactCompany());
+        type(By.name("address"), contactData.getContactCompanyAddress());
+        type(By.name("home"), contactData.getContactHomePhone());
+        type(By.name("mobile"), contactData.getContactMobilePhone());
+        type(By.name("work"), contactData.getContactWorkPhone());
+        type(By.name("fax"), contactData.getContactFax());
+        type(By.name("email"), contactData.getContactEmail());
+        type(By.name("homepage"), contactData.getContactHomepage());
     }
 
     public void gotoAddNewPage() {

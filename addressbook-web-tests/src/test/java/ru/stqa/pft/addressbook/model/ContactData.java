@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
-public class ContactDate {
+public class ContactData {
     private final String contactname;
     private final String contactMiddleName;
     private final String contactLastName;
@@ -15,7 +15,7 @@ public class ContactDate {
     private final String contactEmail;
     private final String contactHomepage;
 
-    public ContactDate(String contactname, String contactMiddleName,
+    public ContactData(String contactname, String contactMiddleName,
                        String contactLastName, String contactNickname, String contactTitle,
                        String contactCompany, String contactCompanyAddress, String contactHomePhone,
                        String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage) {
