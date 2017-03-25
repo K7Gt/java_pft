@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 /**
  * Created by Golem on 19.03.2017.
@@ -31,10 +31,6 @@ public class HelperBase {
         }
     }
 
-    protected boolean checkSelection(By locator) {
-        return wd.findElement(locator).isSelected();
-    }
-
     public boolean isAlertPresent() {
         try {
             wd.switchTo().alert();
@@ -44,7 +40,7 @@ public class HelperBase {
         }
     }
 
-    protected boolean isElementPresent(By locator) {
+    public boolean isElementPresent(By locator) {
         try {
             wd.findElement(locator);
             return true;

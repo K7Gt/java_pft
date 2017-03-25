@@ -1,11 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import java.util.List;
 
 /**
  * Created by Golem on 19.03.2017.
@@ -20,9 +21,8 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-
     public void fillContactForm(ContactData contactData, boolean creation) {
-        type(By.name("firstname"), contactData.getContactname());
+        type(By.name("firstname"), contactData.getContactName());
         type(By.name("middlename"), contactData.getContactMiddleName());
         type(By.name("lastname"), contactData.getContactLastName());
         type(By.name("nickname"), contactData.getContactNickname());
@@ -36,23 +36,21 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getContactEmail());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if(sizeOfList() > 1) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
 
     }
 
-
-
     public void deleteSelectedContact() {
         click(By.xpath("html/body/div[1]/div[4]/form[2]/div[2]/input"));
     }
 
     public void selectContact() {
-        if (!checkSelection(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"))) {
-            click(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
-        }
+        click(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
     }
 
 
@@ -66,5 +64,19 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public int sizeOfList() {
+        List<WebElement> list = wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option"));
+        return list.size();
+    }
+
+    public void createContact(ContactData contact) {
+        fillContactForm(contact,true);
+        submitContactCreation();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]"));
     }
 }
