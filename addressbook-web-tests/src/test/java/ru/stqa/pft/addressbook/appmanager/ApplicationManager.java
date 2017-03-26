@@ -40,15 +40,16 @@ public class ApplicationManager {
         if(browser.equals(BrowserType.FIREFOX)){
             FirefoxBinary binary = new FirefoxBinary(new File(fileFirefox));
             wd = new FirefoxDriver(binary, new FirefoxProfile());
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         } else if(browser.equals(BrowserType.CHROME)) {
            // System.setProperty("webdriver.chrome.driver", fileChrome);
             wd = new ChromeDriver();
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         } else if (browser.equals(BrowserType.IE)){
            // System.setProperty("webdriver.ie.driver",fileIE);
             wd = new InternetExplorerDriver();
-
+            wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(url);
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
