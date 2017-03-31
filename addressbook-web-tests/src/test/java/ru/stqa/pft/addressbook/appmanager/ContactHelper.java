@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getContactEmail());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
-            if(sizeOfList() > 1) {
+            if(getCountContact() > 1) {
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
@@ -66,9 +66,9 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public int sizeOfList() {
-        List<WebElement> list = wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option"));
-        return list.size();
+    public int getCountContact() {
+        return  wd.findElements(By.xpath("//tr[@name = 'entry']")).size();
+
     }
 
     public void createContact(ContactData contact) {
