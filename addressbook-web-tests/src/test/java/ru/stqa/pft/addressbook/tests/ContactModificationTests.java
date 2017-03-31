@@ -12,7 +12,6 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification(){
         app.getNavigationHelper().gotoHomePage();
-
         if(!app.getContactHelper().isThereAContact()){
             app.getNavigationHelper().gotoAddNewPage();
             app.getContactHelper().createContact(new ContactData("testname", "testmiddlename",
@@ -22,7 +21,7 @@ public class ContactModificationTests extends TestBase {
             app.getNavigationHelper().gotoHomePage();
         }
         int before = app.getContactHelper().getCountContact();
-        app.getContactHelper().initContactModification();
+        app.getContactHelper().initContactModification(before - 1);
         app.getContactHelper().fillContactForm(new ContactData("testname-change", "testmiddlename-change",
                 "testlastnamechange-change", "test-change", "testtitle-change", "testcompany-change",
                 "testaddressoftestcompany-change", "77717777", "77717777",
