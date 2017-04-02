@@ -14,7 +14,7 @@ public class GroupData {
     }
 
     public GroupData(String groupName, String groupHeader, String groupFooter) {
-        this.id = 0;
+        this.id = 0;    //В случае когда не проверяем по id искуственно переносим в конец списка при помощи -> Integer.MAX_VALUE; ,  при этом меняем методы equals/hasCode
         this.groupName = groupName;
         this.groupHeader = groupHeader;
         this.groupFooter = groupFooter;
