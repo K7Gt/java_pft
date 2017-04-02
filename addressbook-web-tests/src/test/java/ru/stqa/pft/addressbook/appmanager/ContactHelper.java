@@ -38,13 +38,18 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getContactEmail());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
-            if(getCountContact() > 1) {
+            if(getSizeOfList() > 1) {
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
 
+    }
+
+    public void createContact(ContactData contact) {
+        fillContactForm(contact,true);
+        submitContactCreation();
     }
 
     public void deleteSelectedContact() {
@@ -68,14 +73,10 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public int getCountContact() {
-        return  wd.findElements(By.xpath("//tr[@name = 'entry']")).size();
+    public int getSizeOfList() {
+        int size = wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option")).size();
+        return  size;
 
-    }
-
-    public void createContact(ContactData contact) {
-        fillContactForm(contact,true);
-        submitContactCreation();
     }
 
     public boolean isThereAContact() {
@@ -87,7 +88,7 @@ public class ContactHelper extends HelperBase {
         List<WebElement> rows = wd.findElements(By.xpath("//tr[@name = 'entry']"));
         for(WebElement row: rows){
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            String id = cells.get(0).findElement(By.tagName("input")).getAttribute("value");
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();

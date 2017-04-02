@@ -23,8 +23,6 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private String fileFirefox = "c:\\Firefox_for_course\\firefox.exe";
-    //private String fileChrome = "c:\\Java for Testing (Barancev)\\Others\\chromedriver.exe";
-    //private String fileIE = "c:\\Java for Testing (Barancev)\\Others\\IEDriverServer32.exe";
     private String url = "http://localhost/addressbook/";
     private String login = "admin";
     private String password = "secret";
@@ -40,13 +38,12 @@ public class ApplicationManager {
         if(browser.equals(BrowserType.FIREFOX)){
             FirefoxBinary binary = new FirefoxBinary(new File(fileFirefox));
             wd = new FirefoxDriver(binary, new FirefoxProfile());
+            wd.manage().window().maximize();
             wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         } else if(browser.equals(BrowserType.CHROME)) {
-           // System.setProperty("webdriver.chrome.driver", fileChrome);
             wd = new ChromeDriver();
             wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         } else if (browser.equals(BrowserType.IE)){
-           // System.setProperty("webdriver.ie.driver",fileIE);
             wd = new InternetExplorerDriver();
             wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         }

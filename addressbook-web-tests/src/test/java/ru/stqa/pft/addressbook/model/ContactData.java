@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private final String id;
+    private int id;
     private final String contactName;
     private final String contactMiddleName;
     private final String contactLastName;
@@ -22,7 +22,7 @@ public class ContactData {
                        String contactCompany, String contactCompanyAddress, String contactHomePhone,
                        String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage, String group) {
 
-        this.id = null;
+        this.id = 0;
         this.contactName = contactName;
         this.contactMiddleName = contactMiddleName;
         this.contactLastName = contactLastName;
@@ -39,7 +39,7 @@ public class ContactData {
         this.group = group;
     }
 
-    public ContactData(String id, String contactName, String contactMiddleName, String contactLastName, String contactNickname, String contactTitle, String contactCompany, String contactCompanyAddress, String contactHomePhone, String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage, String group) {
+    public ContactData(int id, String contactName, String contactMiddleName, String contactLastName, String contactNickname, String contactTitle, String contactCompany, String contactCompanyAddress, String contactHomePhone, String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage, String group) {
         this.id = id;
         this.contactName = contactName;
         this.contactMiddleName = contactMiddleName;
@@ -57,7 +57,7 @@ public class ContactData {
         this.group = group;
     }
 
-    public String getId() {        return id;    }
+    public int getId() { return id; }
 
     public String getContactName() {
         return contactName;
@@ -115,6 +115,10 @@ public class ContactData {
         return group;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" +
@@ -132,7 +136,7 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
         if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
         if (contactLastName != null ? !contactLastName.equals(that.contactLastName) : that.contactLastName != null)
             return false;
@@ -141,7 +145,7 @@ public class ContactData {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
         result = 31 * result + (contactLastName != null ? contactLastName.hashCode() : 0);
         result = 31 * result + (contactCompanyAddress != null ? contactCompanyAddress.hashCode() : 0);
