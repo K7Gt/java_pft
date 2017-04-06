@@ -48,15 +48,21 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         fillContactForm(contact,true);
         submitContactCreation();
     }
 
-    public void modifyContact(int index, ContactData contact) {
+    public void modify(int index, ContactData contact) {
         initContactModification(index);
         fillContactForm(contact,false);
         submitContactModification();
+    }
+
+    public void delete(int index) {
+       selectContact(index);
+       deleteSelectedContact();
+       acceptAlertPopUp();
     }
 
     public void deleteSelectedContact() {
@@ -90,7 +96,7 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]"));
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> rows = wd.findElements(By.xpath("//tr[@name = 'entry']"));
         for(WebElement row: rows){
