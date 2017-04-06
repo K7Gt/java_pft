@@ -18,10 +18,21 @@ public class ContactModificationTests extends TestBase {
         app.gotTo().homePage();
         if(app.contact().list().size() == 0){
             app.gotTo().addNewPage();
-            app.contact().create(new ContactData("testname", "testmiddlename",
-                    "testlastname", "test", "testtitle", "testcompany",
-                    "testaddressoftestcompany", "7777777", "7777777",
-                    "7777777", "1111111", "test@gmail.com", "test.com", "test1"));
+            app.contact().create(new ContactData()
+                    .withContactName("testname")
+                    .withContactMiddleName("testmiddlename")
+                    .withContactLastName("testlastname")
+                    .withContactNickname("test")
+                    .withContactTitle("testtitle")
+                    .withContactCompany("testcompany")
+                    .withContactCompanyAddress("testaddressoftestcompany")
+                    .withContactHomePhone("7777777")
+                    .withContactMobilePhone("7777777")
+                    .withContactWorkPhone("7777777")
+                    .withContactFax("1111111")
+                    .withContactEmail("test@gmail.com")
+                    .withContactHomepage("test.com")
+                    .withGroup("test1"));
             app.gotTo().homePage();
         }
     }
@@ -30,10 +41,21 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification(){
         List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(),"t-change", "testmiddlename-change",
-                "t1", "test-change", "testtitle-change", "t1",
-                "testaddressoftestcompany-change", "77717777", "77717777",
-                "77771777", "11117111", "test-change@gmail.com", "test-change.com", null);
+        ContactData contact = new ContactData()
+                .withId(before.get(index).getId())
+                .withContactName("testname-change")
+                .withContactMiddleName("testmiddlename-change")
+                .withContactLastName("testlastname-change")
+                .withContactNickname("test-change")
+                .withContactTitle("testtitle-change")
+                .withContactCompany("testcompany-change")
+                .withContactCompanyAddress("testaddressoftestcompany-change")
+                .withContactHomePhone("77717777")
+                .withContactMobilePhone("77717777")
+                .withContactWorkPhone("77771777")
+                .withContactFax("11111117")
+                .withContactEmail("test-change@gmail.com")
+                .withContactHomepage("test-change.com");
         app.contact().modify(index, contact);
         app.gotTo().homePage();
         List<ContactData> after = app.contact().list();

@@ -105,11 +105,11 @@ public class ContactHelper extends HelperBase {
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();
-            ContactData contact = new ContactData(id ,firstName,null,lastName,
-                    null,null,null,address,
-                    null,null,null,null,
-                    null,null,null);
-            contacts.add(contact);
+            contacts.add(new ContactData()
+                    .withId(id)
+                    .withContactName(firstName)
+                    .withContactLastName(lastName)
+                    .withContactCompanyAddress(address));
         }
         return contacts;
     }

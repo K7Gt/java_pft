@@ -14,10 +14,21 @@ public class ContactDeletionTests extends TestBase {
         app.gotTo().homePage();
         if(app.contact().list().size() == 0){
             app.gotTo().addNewPage();
-            app.contact().create(new ContactData("testname", "testmiddlename",
-                    "testlastname", "test", "testtitle", "testcompany",
-                    "testaddressoftestcompany", "7777777", "7777777",
-                    "7777777", "1111111", "test@gmail.com", "test.com", "test1"));
+            app.contact().create(new ContactData()
+                    .withContactName("testname")
+                    .withContactMiddleName("testmiddlename")
+                    .withContactLastName("testlastname")
+                    .withContactNickname("test")
+                    .withContactTitle("testtitle")
+                    .withContactCompany("testcompany")
+                    .withContactCompanyAddress("testaddressoftestcompany")
+                    .withContactHomePhone("7777777")
+                    .withContactMobilePhone("7777777")
+                    .withContactWorkPhone("7777777")
+                    .withContactFax("1111111")
+                    .withContactEmail("test@gmail.com")
+                    .withContactHomepage("test.com")
+                    .withGroup("test1"));
             app.gotTo().homePage();
         }
     }

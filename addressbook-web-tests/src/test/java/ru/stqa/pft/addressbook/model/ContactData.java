@@ -1,61 +1,21 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
-    private final String contactName;
-    private final String contactMiddleName;
-    private final String contactLastName;
-    private final String contactNickname;
-    private final String contactTitle;
-    private final String contactCompany;
-    private final String contactCompanyAddress;
-    private final String contactHomePhone;
-    private final String contactMobilePhone;
-    private final String contactWorkPhone;
-    private final String contactFax;
-    private final String contactEmail;
-    private final String contactHomepage;
-    private final String group;
-
-    public ContactData(String contactName, String contactMiddleName,
-                       String contactLastName, String contactNickname, String contactTitle,
-                       String contactCompany, String contactCompanyAddress, String contactHomePhone,
-                       String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage, String group) {
-
-        this.id = 0;
-        this.contactName = contactName;
-        this.contactMiddleName = contactMiddleName;
-        this.contactLastName = contactLastName;
-        this.contactNickname = contactNickname;
-        this.contactTitle = contactTitle;
-        this.contactCompany = contactCompany;
-        this.contactCompanyAddress = contactCompanyAddress;
-        this.contactHomePhone = contactHomePhone;
-        this.contactMobilePhone = contactMobilePhone;
-        this.contactWorkPhone = contactWorkPhone;
-        this.contactFax = contactFax;
-        this.contactEmail = contactEmail;
-        this.contactHomepage = contactHomepage;
-        this.group = group;
-    }
-
-    public ContactData(int id, String contactName, String contactMiddleName, String contactLastName, String contactNickname, String contactTitle, String contactCompany, String contactCompanyAddress, String contactHomePhone, String contactMobilePhone, String contactWorkPhone, String contactFax, String contactEmail, String contactHomepage, String group) {
-        this.id = id;
-        this.contactName = contactName;
-        this.contactMiddleName = contactMiddleName;
-        this.contactLastName = contactLastName;
-        this.contactNickname = contactNickname;
-        this.contactTitle = contactTitle;
-        this.contactCompany = contactCompany;
-        this.contactCompanyAddress = contactCompanyAddress;
-        this.contactHomePhone = contactHomePhone;
-        this.contactMobilePhone = contactMobilePhone;
-        this.contactWorkPhone = contactWorkPhone;
-        this.contactFax = contactFax;
-        this.contactEmail = contactEmail;
-        this.contactHomepage = contactHomepage;
-        this.group = group;
-    }
+    private int id = 0;
+    private String contactName;
+    private String contactMiddleName;
+    private String contactLastName;
+    private String contactNickname;
+    private String contactTitle;
+    private String contactCompany;
+    private String contactCompanyAddress;
+    private String contactHomePhone;
+    private String contactMobilePhone;
+    private String contactWorkPhone;
+    private String contactFax;
+    private String contactEmail;
+    private String contactHomepage;
+    private String group;
 
     public int getId() { return id; }
 
@@ -115,8 +75,79 @@ public class ContactData {
         return group;
     }
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withContactName(String contactName) {
+        this.contactName = contactName;
+        return this;
+    }
+
+    public ContactData withContactMiddleName(String contactMiddleName) {
+        this.contactMiddleName = contactMiddleName;
+        return this;
+    }
+
+    public ContactData withContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
+        return this;
+    }
+
+    public ContactData withContactNickname(String contactNickname) {
+        this.contactNickname = contactNickname;
+        return this;
+    }
+
+    public ContactData withContactTitle(String contactTitle) {
+        this.contactTitle = contactTitle;
+        return this;
+    }
+
+    public ContactData withContactCompany(String contactCompany) {
+        this.contactCompany = contactCompany;
+        return this;
+    }
+
+    public ContactData withContactCompanyAddress(String contactCompanyAddress) {
+        this.contactCompanyAddress = contactCompanyAddress;
+        return this;
+    }
+
+    public ContactData withContactHomePhone(String contactHomePhone) {
+        this.contactHomePhone = contactHomePhone;
+        return this;
+    }
+
+    public ContactData withContactMobilePhone(String contactMobilePhone) {
+        this.contactMobilePhone = contactMobilePhone;
+        return this;
+    }
+
+    public ContactData withContactWorkPhone(String contactWorkPhone) {
+        this.contactWorkPhone = contactWorkPhone;
+        return this;
+    }
+
+    public ContactData withContactFax(String contactFax) {
+        this.contactFax = contactFax;
+        return this;
+    }
+
+    public ContactData withContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+        return this;
+    }
+
+    public ContactData withContactHomepage(String contactHomepage) {
+        this.contactHomepage = contactHomepage;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override

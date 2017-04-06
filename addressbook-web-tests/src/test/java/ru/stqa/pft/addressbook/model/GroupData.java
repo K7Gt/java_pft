@@ -1,25 +1,10 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
-    private int id;
-    private final String groupName;
-    private final String groupHeader;
-    private final String groupFooter;
-
-    public GroupData(int id, String groupName, String groupHeader, String groupFooter) {
-        this.id = id;
-        this.groupName = groupName;
-        this.groupHeader = groupHeader;
-        this.groupFooter = groupFooter;
-    }
-
-    public GroupData(String groupName, String groupHeader, String groupFooter) {
-        this.id = 0;    //В случае когда не проверяем по id искуственно переносим в конец списка при помощи -> Integer.MAX_VALUE; ,  при этом меняем методы equals/hasCode
-        this.groupName = groupName;
-        this.groupHeader = groupHeader;
-        this.groupFooter = groupFooter;
-    }
-
+    private int id = 0;
+    private String groupName;
+    private String groupHeader;
+    private String groupFooter;
 
     public int getId() { return id; }
 
@@ -35,7 +20,25 @@ public class GroupData {
         return groupFooter;
     }
 
-    public void setId(int id) {        this.id = id;    }
+    public GroupData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public GroupData withName(String groupName) {
+        this.groupName = groupName;
+        return this;
+    }
+
+    public GroupData withHeader(String groupHeader) {
+        this.groupHeader = groupHeader;
+        return this;
+    }
+
+    public GroupData withFooter(String groupFooter) {
+        this.groupFooter = groupFooter;
+        return this;
+    }
 
     @Override
     public String toString() {

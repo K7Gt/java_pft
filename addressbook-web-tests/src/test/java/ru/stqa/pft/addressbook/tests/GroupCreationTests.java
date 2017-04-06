@@ -14,12 +14,12 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         app.gotTo().groupPage();
         List<GroupData> before = app.group().list();
-        GroupData group = new GroupData("test2", null, null);
+        GroupData group = new GroupData().withName("test2");
         app.group().create(group);
         List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size() + 1);
         // В случае проверки по id, в противном случае в конструкторе присваиваем максимальное значение и убираем из сравнения id
-        group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
+        group.withId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
         before.add(group);
 
         Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
