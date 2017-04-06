@@ -38,7 +38,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getContactEmail());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
-            if(getSizeOfList() > 1) {
+            if(getSizeOfList() > 1 && wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option[contains(text(),\'" + contactData.getGroup() +"\')]")).size() != 0) {
+                new Select (wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
@@ -50,6 +51,12 @@ public class ContactHelper extends HelperBase {
     public void createContact(ContactData contact) {
         fillContactForm(contact,true);
         submitContactCreation();
+    }
+
+    public void modifyContact(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact,false);
+        submitContactModification();
     }
 
     public void deleteSelectedContact() {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testGroupCreation() {
         app.getNavigationHelper().gotoGroupPage();
         List<GroupData> before = app.getGroupHelper().getGroupList();
@@ -19,8 +19,8 @@ public class GroupCreationTests extends TestBase {
         app.getGroupHelper().createGroup(group);
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
-
-        group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId()); // В случае проверки по id
+        // В случае проверки по id, в противном случае в конструкторе присваиваем максимальное значение и убираем из сравнения id
+        group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
         before.add(group);
 
         Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
