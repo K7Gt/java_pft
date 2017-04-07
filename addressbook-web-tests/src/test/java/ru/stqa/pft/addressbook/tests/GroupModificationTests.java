@@ -26,7 +26,7 @@ public class GroupModificationTests extends TestBase{
         Groups before = app.group().all();
         GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData()
-                .withId(modifiedGroup.getId()).withName("t1")
+                .withId(modifiedGroup.getId()).withName("t1-withmodified")
                 .withHeader("test7")
                 .withFooter("test7");
         app.group().modify(group);
@@ -35,5 +35,6 @@ public class GroupModificationTests extends TestBase{
 
         before.remove(modifiedGroup);
         assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
+        //assertThat(after, equalTo(before.withModified(modifiedGroup.getId(),group)));
     }
 }
