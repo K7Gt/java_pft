@@ -65,7 +65,27 @@ public class ContactHelper extends HelperBase {
     }
 
     private void initContactModificationById(int id) {
-        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+        wd.findElement(By.xpath(String.format("//a[@href='edit.php?id=%s']",id))).click();
+        //wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a",id).click();
+        //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a",id).click();
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getText();
+        String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+        String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData()
+                .withContactName(firstName)
+                .withContactLastName(lastName)
+                .withContactCompanyAddress(address)
+                .withContactHomePhone(homePhone)
+                .withContactMobilePhone(mobilePhone)
+                .withContactWorkPhone(workPhone);
     }
 
     public void delete(ContactData deletedContact) {
@@ -117,11 +137,15 @@ public class ContactHelper extends HelperBase {
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();
+            String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()
                     .withId(id)
                     .withContactName(firstName)
                     .withContactLastName(lastName)
-                    .withContactCompanyAddress(address));
+                    .withContactCompanyAddress(address)
+                    .withContactHomePhone(phones[0])
+                    .withContactMobilePhone(phones[1])
+                    .withContactWorkPhone(phones[2]));
         }
         return new Contacts(contactCache);
     }
@@ -129,4 +153,5 @@ public class ContactHelper extends HelperBase {
     public int count() {
         return wd.findElements(By.xpath("//tr[@name = 'entry']")).size();
     }
+
 }

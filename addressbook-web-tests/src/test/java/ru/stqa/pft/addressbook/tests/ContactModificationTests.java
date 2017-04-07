@@ -50,10 +50,10 @@ public class ContactModificationTests extends TestBase {
                 .withContactTitle("testtitle-change")
                 .withContactCompany("testcompany-change")
                 .withContactCompanyAddress("testaddressoftestcompany-change")
-                .withContactHomePhone("77717777")
-                .withContactMobilePhone("77717777")
-                .withContactWorkPhone("77771777")
-                .withContactFax("11111117")
+                .withContactHomePhone("111")
+                .withContactMobilePhone("2222")
+                .withContactWorkPhone("333")
+                .withContactFax("444")
                 .withContactEmail("test-change@gmail.com")
                 .withContactHomepage("test-change.com");
         app.contact().modify(contact);
