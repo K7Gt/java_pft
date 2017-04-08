@@ -13,10 +13,13 @@ public class ContactData {
     private String contactMobilePhone;
     private String contactWorkPhone;
     private String contactFax;
-    private String contactEmail;
+    private String contactEmail1;
+    private String contactEmail2;
+    private String contactEmail3;
     private String contactHomepage;
     private String group;
     private String allPhones;
+    private String allEmails;
 
     public int getId() { return id; }
 
@@ -64,8 +67,8 @@ public class ContactData {
         return contactFax;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public String getContactEmail1() {
+        return contactEmail1;
     }
 
     public String getContactHomepage() {
@@ -83,6 +86,18 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
+    }
+
+    public String getContactEmail2() {
+        return contactEmail2;
+    }
+
+    public String getContactEmail3() {
+        return contactEmail3;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
     }
 
     public ContactData withContactName(String contactName) {
@@ -140,8 +155,18 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public ContactData withContactEmail1(String contactEmail) {
+        this.contactEmail1 = contactEmail;
+        return this;
+    }
+
+    public ContactData withContactEmail2(String contactEmail) {
+        this.contactEmail2 = contactEmail;
+        return this;
+    }
+
+    public ContactData withContactEmail3(String contactEmail) {
+        this.contactEmail3 = contactEmail;
         return this;
     }
 
@@ -157,6 +182,11 @@ public class ContactData {
 
     public ContactData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails){
+        this.allEmails = allEmails;
         return this;
     }
 
@@ -192,5 +222,6 @@ public class ContactData {
         result = 31 * result + (contactCompanyAddress != null ? contactCompanyAddress.hashCode() : 0);
         return result;
     }
+
 
 }

@@ -27,7 +27,7 @@ public class ContactDeletionTests extends TestBase {
                     .withContactMobilePhone("7777777")
                     .withContactWorkPhone("7777777")
                     .withContactFax("1111111")
-                    .withContactEmail("test@gmail.com")
+                    .withContactEmail1("test@gmail.com")
                     .withContactHomepage("test.com")
                     .withGroup("test1"));
             app.gotTo().homePage();

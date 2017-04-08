@@ -30,7 +30,7 @@ public class ContactModificationTests extends TestBase {
                     .withContactMobilePhone("7777777")
                     .withContactWorkPhone("7777777")
                     .withContactFax("1111111")
-                    .withContactEmail("test@gmail.com")
+                    .withContactEmail1("test@gmail.com")
                     .withContactHomepage("test.com")
                     .withGroup("test1"));
             app.gotTo().homePage();
@@ -54,7 +54,7 @@ public class ContactModificationTests extends TestBase {
                 .withContactMobilePhone("2222")
                 .withContactWorkPhone("333")
                 .withContactFax("444")
-                .withContactEmail("test-change@gmail.com")
+                .withContactEmail1("test-change@gmail.com")
                 .withContactHomepage("test-change.com");
         app.contact().modify(contact);
         app.gotTo().homePage();

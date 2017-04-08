@@ -26,7 +26,7 @@ public class ContactCreationTests extends TestBase {
                     .withContactHomePhone("111")
                     .withContactMobilePhone("2222")
                     .withContactWorkPhone("33333")
-                    .withContactEmail("test@gmail.com")
+                    .withContactEmail1("test@gmail.com")
                     .withContactHomepage("test.com"));
             app.gotTo().homePage();
         }
@@ -49,7 +49,7 @@ public class ContactCreationTests extends TestBase {
                 .withContactMobilePhone("7777777")
                 .withContactWorkPhone("7777777")
                 .withContactFax("1111111")
-                .withContactEmail("test@gmail.com")
+                .withContactEmail1("test@gmail.com")
                 .withContactHomepage("test.com")
                 .withGroup("test1");
         app.contact().create(contact);

@@ -8,10 +8,8 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Golem on 19.03.2017.
@@ -38,7 +36,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getContactMobilePhone());
         type(By.name("work"), contactData.getContactWorkPhone());
         type(By.name("fax"), contactData.getContactFax());
-        type(By.name("email"), contactData.getContactEmail());
+        type(By.name("email"), contactData.getContactEmail1());
+        type(By.name("email2"), contactData.getContactEmail2());
+        type(By.name("email3"), contactData.getContactEmail3());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
             if(getSizeOfList() > 1 && wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option[contains(text(),\'" + contactData.getGroup() +"\')]")).size() != 0) {
@@ -78,6 +78,9 @@ public class ContactHelper extends HelperBase {
         String homePhone = wd.findElement(By.name("home")).getAttribute("value");
         String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
         String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+        String email1 = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactData()
                 .withContactName(firstName)
@@ -85,7 +88,10 @@ public class ContactHelper extends HelperBase {
                 .withContactCompanyAddress(address)
                 .withContactHomePhone(homePhone)
                 .withContactMobilePhone(mobilePhone)
-                .withContactWorkPhone(workPhone);
+                .withContactWorkPhone(workPhone)
+                .withContactEmail1(email1)
+                .withContactEmail2(email2)
+                .withContactEmail3(email3);
     }
 
     public void delete(ContactData deletedContact) {
@@ -137,6 +143,10 @@ public class ContactHelper extends HelperBase {
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();
+            String allEmails = cells.get(4).findElements(By.tagName("a"))
+                    .stream().map(WebElement::getText)
+                    .filter((s -> !s.equals("")))
+                    .collect(Collectors.joining("\n"));
             String allPhones = cells.get(5).getText();
             //String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()
@@ -144,6 +154,7 @@ public class ContactHelper extends HelperBase {
                     .withContactName(firstName)
                     .withContactLastName(lastName)
                     .withContactCompanyAddress(address)
+                    .withAllEmails(allEmails)
                     .withAllPhones(allPhones));
 //                    .withContactHomePhone(phones[0])
 //                    .withContactMobilePhone(phones[1])
