@@ -137,15 +137,17 @@ public class ContactHelper extends HelperBase {
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
+            //String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()
                     .withId(id)
                     .withContactName(firstName)
                     .withContactLastName(lastName)
                     .withContactCompanyAddress(address)
-                    .withContactHomePhone(phones[0])
-                    .withContactMobilePhone(phones[1])
-                    .withContactWorkPhone(phones[2]));
+                    .withAllPhones(allPhones));
+//                    .withContactHomePhone(phones[0])
+//                    .withContactMobilePhone(phones[1])
+//                    .withContactWorkPhone(phones[2]));
         }
         return new Contacts(contactCache);
     }

@@ -62,7 +62,7 @@ public class ContactCreationTests extends TestBase {
 
 
     }
-    @Test
+    @Test(enabled = false)
     public void testBadContactCreation() {
         app.gotTo().homePage();
         Contacts before = app.contact().all();
