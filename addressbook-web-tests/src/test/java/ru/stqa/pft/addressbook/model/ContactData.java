@@ -20,6 +20,8 @@ public class ContactData {
     private String group;
     private String allPhones;
     private String allEmails;
+    private String fullName;
+    private String contactSummary;
 
     public int getId() { return id; }
 
@@ -77,6 +79,14 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getContactSummary() {
+        return contactSummary;
     }
 
     public ContactData withId(int id) {
@@ -190,14 +200,14 @@ public class ContactData {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id='" + id + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", contactLastName='" + contactLastName + '\'' +
-                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
-                '}';
+    public ContactData withContactSummary(String contactSummary) {
+        this.contactSummary = contactSummary;
+        return this;
+    }
+
+    public ContactData withContactFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
     }
 
     @Override
@@ -209,8 +219,6 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
-        if (contactLastName != null ? !contactLastName.equals(that.contactLastName) : that.contactLastName != null)
-            return false;
         return contactCompanyAddress != null ? contactCompanyAddress.equals(that.contactCompanyAddress) : that.contactCompanyAddress == null;
     }
 
@@ -218,10 +226,35 @@ public class ContactData {
     public int hashCode() {
         int result = id;
         result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
-        result = 31 * result + (contactLastName != null ? contactLastName.hashCode() : 0);
         result = 31 * result + (contactCompanyAddress != null ? contactCompanyAddress.hashCode() : 0);
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", contactName='" + contactName + '\'' +
+                ", contactMiddleName='" + contactMiddleName + '\'' +
+                ", contactLastName='" + contactLastName + '\'' +
+                ", contactNickname='" + contactNickname + '\'' +
+                ", contactTitle='" + contactTitle + '\'' +
+                ", contactCompany='" + contactCompany + '\'' +
+                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
+                ", contactHomePhone='" + contactHomePhone + '\'' +
+                ", contactMobilePhone='" + contactMobilePhone + '\'' +
+                ", contactWorkPhone='" + contactWorkPhone + '\'' +
+                ", contactFax='" + contactFax + '\'' +
+                ", contactEmail1='" + contactEmail1 + '\'' +
+                ", contactEmail2='" + contactEmail2 + '\'' +
+                ", contactEmail3='" + contactEmail3 + '\'' +
+                ", contactHomepage='" + contactHomepage + '\'' +
+                ", group='" + group + '\'' +
+                ", allPhones='" + allPhones + '\'' +
+                ", allEmails='" + allEmails + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", contactSummary='" + contactSummary + '\'' +
+                '}';
+    }
 
 }
