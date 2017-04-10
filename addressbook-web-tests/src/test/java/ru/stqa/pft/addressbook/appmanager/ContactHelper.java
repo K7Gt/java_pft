@@ -178,7 +178,10 @@ public class ContactHelper extends HelperBase {
                     .filter((s -> !s.equals("")))
                     .collect(Collectors.joining("\n"));
             String allPhones = cells.get(5).getText();
-            String homePage = cells.get(9).findElement(By.tagName("a")).getAttribute("href");
+            String homePage;
+            if(isElementPresent(By.tagName("td[10]"))){
+                homePage = cells.get(9).findElement(By.tagName("a")).getAttribute("href");
+            }else homePage = null;
             //String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()
                     .withId(id)

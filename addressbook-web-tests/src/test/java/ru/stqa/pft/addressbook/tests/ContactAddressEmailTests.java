@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Golem on 08.04.2017.
  */
-public class ContactEmailTests extends TestBase {
+public class ContactAddressEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
@@ -41,6 +41,15 @@ public class ContactEmailTests extends TestBase {
 
     @Test
     public void testContactEmail(){
+        app.gotTo().homePage();
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFormEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getContactHomepage(), equalTo(contactInfoFormEditForm.getContactHomepage()));
+
+    }
+
+    @Test
+    public void testContactAddress(){
         app.gotTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFormEditForm = app.contact().infoFromEditForm(contact);
