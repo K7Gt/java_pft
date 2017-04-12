@@ -44,7 +44,7 @@ public class ContactAddressEmailTests extends TestBase {
         app.gotTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFormEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getContactHomepage(), equalTo(contactInfoFormEditForm.getContactHomepage()));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFormEditForm)));
 
     }
 
@@ -53,7 +53,8 @@ public class ContactAddressEmailTests extends TestBase {
         app.gotTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFormEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFormEditForm)));
+
+        assertThat(cleaned(contact.getContactCompanyAddress()), equalTo(cleaned(contactInfoFormEditForm.getContactCompanyAddress())));
 
     }
 
@@ -61,5 +62,10 @@ public class ContactAddressEmailTests extends TestBase {
         return Arrays.asList(contactInfoFormEditForm.getContactEmail1(),contactInfoFormEditForm.getContactEmail2(),contactInfoFormEditForm.getContactEmail3())
                 .stream().filter((s -> !s.equals("")))
                 .collect(Collectors.joining("\n"));
+    }
+
+    public static String cleaned(String string){
+        return string.replaceAll("\\s","")
+                .replaceAll("\n","");
     }
 }

@@ -61,16 +61,17 @@ public class ContactDetailsTests extends TestBase {
                 ,contact.getContactCompany()
                 ,contact.getContactCompanyAddress()
 
-                ,contact.getContactHomePhone()
-                ,contact.getContactMobilePhone()
-                ,contact.getContactWorkPhone()
-                ,contact.getContactFax()
+                ,contact.getContactHomePhone().isEmpty() ? contact.getContactHomePhone() : ("H:" + contact.getContactHomePhone())
+                ,contact.getContactMobilePhone().isEmpty() ? contact.getContactMobilePhone(): ("M:" + contact.getContactMobilePhone())
+                ,contact.getContactWorkPhone().isEmpty()? contact.getContactWorkPhone() :("W:" + contact.getContactWorkPhone())
+                ,contact.getContactFax().isEmpty() ? contact.getContactFax() : ("F:" + contact.getContactFax())
 
                 ,contact.getContactEmail1()
                 ,contact.getContactEmail2()
                 ,contact.getContactEmail3()
 
-                ,contact.getContactHomepage())
+                ,contact.getContactHomepage().isEmpty() ? contact.getContactHomepage() : ("Homepage:" + contact.getContactHomepage()))
+
                 .stream().filter((s -> !s.equals("")))
                 .map(ContactDetailsTests::cleaned)
                 .collect(Collectors.joining(""));
@@ -81,11 +82,12 @@ public class ContactDetailsTests extends TestBase {
         return string.replaceAll("\\s","")
                 .replaceAll("[-()]","")
                 .replaceAll("\n","")
-                .replaceAll("H:","")
-                .replaceAll("M:","")
-                .replaceAll("W:","")
-                .replaceAll("F:","")
-                .replaceAll("Memberof:.*","")
-                .replaceAll("Homepage:","");
+//                .replaceAll("H:","")
+//                .replaceAll("M:","")
+//                .replaceAll("W:","")
+//                .replaceAll("F:","")
+//                .replaceAll("Homepage:","")
+                .replaceAll("Memberof:.*","");
+
     }
 }
