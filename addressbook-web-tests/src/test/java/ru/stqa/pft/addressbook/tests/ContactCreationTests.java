@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -37,6 +39,7 @@ public class ContactCreationTests extends TestBase {
         app.gotTo().homePage();
         Contacts before = app.contact().all();
         app.gotTo().addNewPage();
+        File photo = new File("src/test/resources/getimg.jpeg");
         ContactData contact = new ContactData()
                 .withContactName("testname")
                 .withContactMiddleName("testmiddlename")
@@ -51,7 +54,7 @@ public class ContactCreationTests extends TestBase {
                 .withContactFax("1111111")
                 .withContactEmail1("test@gmail.com")
                 .withContactHomepage("test.com")
-                .withGroup("test1");
+                .withPhoto(photo);
         app.contact().create(contact);
         app.gotTo().homePage();
         assertThat(app.contact().count(),equalTo(before.size() + 1));
@@ -62,6 +65,16 @@ public class ContactCreationTests extends TestBase {
 
 
     }
+
+  /*  @Test
+    public void testCurrentDir(){
+        File currentDir = new File(".");
+        System.out.println(currentDir.getAbsolutePath());
+        File photo = new File("src/test/resources/getimg.jpeg");
+        System.out.println(photo.getAbsolutePath());
+        System.out.println(photo.exists());
+    }
+*/
     @Test(enabled = false)
     public void testBadContactCreation() {
         app.gotTo().homePage();

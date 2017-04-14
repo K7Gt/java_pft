@@ -29,6 +29,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contactData.getContactMiddleName());
         type(By.name("lastname"), contactData.getContactLastName());
         type(By.name("nickname"), contactData.getContactNickname());
+        attach(By.name("photo"),contactData.getPhoto());
         type(By.name("title"), contactData.getContactTitle());
         type(By.name("company"), contactData.getContactCompany());
         type(By.name("address"), contactData.getContactCompanyAddress());
@@ -43,7 +44,6 @@ public class ContactHelper extends HelperBase {
         if(creation){
             if(getSizeOfList() > 1 && wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option[contains(text(),\'" + contactData.getGroup() +"\')]")).size() != 0) {
                 new Select (wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
