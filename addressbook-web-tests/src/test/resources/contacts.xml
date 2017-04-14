@@ -1,0 +1,53 @@
+<list>
+  <contact>
+    <contactName>contactName 0</contactName>
+    <contactMiddleName>middleName 0</contactMiddleName>
+    <contactLastName>lastName 0</contactLastName>
+    <contactNickname>nickName 0</contactNickname>
+    <contactTitle>title 0</contactTitle>
+    <contactCompany>company 0</contactCompany>
+    <contactCompanyAddress>companyAddress 0</contactCompanyAddress>
+    <contactHomePhone>111110</contactHomePhone>
+    <contactMobilePhone>222220</contactMobilePhone>
+    <contactWorkPhone>333330</contactWorkPhone>
+    <contactFax>444440</contactFax>
+    <contactEmail1>testEmail0@gmail.com</contactEmail1>
+    <contactEmail2>testEmail0@gmail.com</contactEmail2>
+    <contactEmail3>testEmail0@gmail.com</contactEmail3>
+    <contactHomepage>homepage0.com</contactHomepage>
+  </contact>
+  <contact>
+    <contactName>contactName 1</contactName>
+    <contactMiddleName>middleName 1</contactMiddleName>
+    <contactLastName>lastName 1</contactLastName>
+    <contactNickname>nickName 1</contactNickname>
+    <contactTitle>title 1</contactTitle>
+    <contactCompany>company 1</contactCompany>
+    <contactCompanyAddress>companyAddress 1</contactCompanyAddress>
+    <contactHomePhone>111111</contactHomePhone>
+    <contactMobilePhone>222221</contactMobilePhone>
+    <contactWorkPhone>333331</contactWorkPhone>
+    <contactFax>444441</contactFax>
+    <contactEmail1>testEmail1@gmail.com</contactEmail1>
+    <contactEmail2>testEmail1@gmail.com</contactEmail2>
+    <contactEmail3>testEmail1@gmail.com</contactEmail3>
+    <contactHomepage>homepage1.com</contactHomepage>
+  </contact>
+  <contact>
+    <contactName>contactName 2</contactName>
+    <contactMiddleName>middleName 2</contactMiddleName>
+    <contactLastName>lastName 2</contactLastName>
+    <contactNickname>nickName 2</contactNickname>
+    <contactTitle>title 2</contactTitle>
+    <contactCompany>company 2</contactCompany>
+    <contactCompanyAddress>companyAddress 2</contactCompanyAddress>
+    <contactHomePhone>111112</contactHomePhone>
+    <contactMobilePhone>222222</contactMobilePhone>
+    <contactWorkPhone>333332</contactWorkPhone>
+    <contactFax>444442</contactFax>
+    <contactEmail1>testEmail2@gmail.com</contactEmail1>
+    <contactEmail2>testEmail2@gmail.com</contactEmail2>
+    <contactEmail3>testEmail2@gmail.com</contactEmail3>
+    <contactHomepage>homepage2.com</contactHomepage>
+  </contact>
+</list>
