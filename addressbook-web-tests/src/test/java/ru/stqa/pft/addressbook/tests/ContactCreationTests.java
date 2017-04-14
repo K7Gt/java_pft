@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +20,14 @@ public class ContactCreationTests extends TestBase {
     public void ensurePreconditions(){
         app.gotTo().homePage();
         if(app.contact().all().size() == 0){
+            File photo = new File("src/test/resources/getimg.jpeg");
             app.gotTo().addNewPage();
             app.contact().create(new ContactData()
                     .withContactName("testname")
                     .withContactMiddleName("testmiddlename")
                     .withContactLastName("testlastname")
                     .withContactNickname("test")
+                    .withPhoto(photo)
                     .withContactTitle("testtitle")
                     .withContactCompany("testcompany")
                     .withContactCompanyAddress("testaddressoftestcompany")
@@ -39,46 +41,29 @@ public class ContactCreationTests extends TestBase {
     }
 
     @DataProvider
-    public Iterator<Object[]> validContacts(){
+    public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        File photo = new File("src/test/resources/getimg.jpeg");
-        list.add(new Object[]{new ContactData().withContactName("testname1")
-                .withContactLastName("testlastname1")
-                .withContactCompanyAddress("test1-address-of-company")
-                .withContactHomePhone("111")
-                .withContactMobilePhone("222")
-                .withContactWorkPhone("333")
-                .withContactFax("444")
-                .withContactEmail1("test1@gmail.com")
-                .withContactEmail2("test2@gmail.com")
-                .withContactEmail3("test3@gmail.com")
-                .withContactHomepage("test1.com")
-                .withPhoto(photo)});
-        list.add(new Object[]{new ContactData().withContactName("testname2")
-                .withContactLastName("testlastname2")
-                .withContactCompanyAddress("test2-address-of-company")
-                .withContactHomePhone("111")
-                .withContactMobilePhone("222")
-                .withContactWorkPhone("333")
-                .withContactFax("444")
-                .withContactEmail1("test1@gmail.com")
-                .withContactEmail2("test2@gmail.com")
-                .withContactEmail3("test3@gmail.com")
-                .withContactHomepage("test2.com")
-                .withPhoto(photo)});
-        list.add(new Object[]{new ContactData().withContactName("testname3")
-                .withContactLastName("testlastname3")
-                .withContactCompanyAddress("test3-address-of-company")
-                .withContactHomePhone("111")
-                .withContactMobilePhone("222")
-                .withContactWorkPhone("333")
-                .withContactFax("444")
-                .withContactEmail1("test1@gmail.com")
-                .withContactEmail2("test2@gmail.com")
-                .withContactEmail3("test3@gmail.com")
-                .withContactHomepage("test3.com")
-                .withPhoto(photo)});
-
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+        String line = reader.readLine();
+        while (line != null){
+            String split[] = line.split(";");
+            list.add(new Object[]{new ContactData().withContactName(split[0])
+                    .withContactMiddleName(split[1])
+                    .withContactLastName(split[2])
+                    .withContactNickname(split[3])
+                    .withContactTitle(split[4])
+                    .withContactCompany(split[5])
+                    .withContactCompanyAddress(split[6])
+                    .withContactHomePhone(split[7])
+                    .withContactMobilePhone(split[8])
+                    .withContactWorkPhone(split[9])
+                    .withContactFax(split[10])
+                    .withContactEmail1(split[11])
+                    .withContactEmail2(split[12])
+                    .withContactEmail3(split[13])
+                    .withContactHomepage(split[14])});
+            line = reader.readLine();
+        }
 
         return list.iterator();
     }
