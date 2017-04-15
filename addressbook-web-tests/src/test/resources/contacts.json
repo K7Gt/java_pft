@@ -1,0 +1,53 @@
+[
+  {
+    "contactName": "contactName 0",
+    "contactMiddleName": "middleName 0",
+    "contactLastName": "lastName 0",
+    "contactNickname": "nickName 0",
+    "contactTitle": "title 0",
+    "contactCompany": "company 0",
+    "contactCompanyAddress": "companyAddress 0",
+    "contactHomePhone": "111110",
+    "contactMobilePhone": "222220",
+    "contactWorkPhone": "333330",
+    "contactFax": "444440",
+    "contactEmail1": "testEmail0@gmail.com",
+    "contactEmail2": "testEmail0@gmail.com",
+    "contactEmail3": "testEmail0@gmail.com",
+    "contactHomepage": "homepage0.com"
+  },
+  {
+    "contactName": "contactName 1",
+    "contactMiddleName": "middleName 1",
+    "contactLastName": "lastName 1",
+    "contactNickname": "nickName 1",
+    "contactTitle": "title 1",
+    "contactCompany": "company 1",
+    "contactCompanyAddress": "companyAddress 1",
+    "contactHomePhone": "111111",
+    "contactMobilePhone": "222221",
+    "contactWorkPhone": "333331",
+    "contactFax": "444441",
+    "contactEmail1": "testEmail1@gmail.com",
+    "contactEmail2": "testEmail1@gmail.com",
+    "contactEmail3": "testEmail1@gmail.com",
+    "contactHomepage": "homepage1.com"
+  },
+  {
+    "contactName": "contactName 2",
+    "contactMiddleName": "middleName 2",
+    "contactLastName": "lastName 2",
+    "contactNickname": "nickName 2",
+    "contactTitle": "title 2",
+    "contactCompany": "company 2",
+    "contactCompanyAddress": "companyAddress 2",
+    "contactHomePhone": "111112",
+    "contactMobilePhone": "222222",
+    "contactWorkPhone": "333332",
+    "contactFax": "444442",
+    "contactEmail1": "testEmail2@gmail.com",
+    "contactEmail2": "testEmail2@gmail.com",
+    "contactEmail3": "testEmail2@gmail.com",
+    "contactHomepage": "homepage2.com"
+  }
+]
