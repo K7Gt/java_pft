@@ -9,7 +9,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,12 +21,10 @@ public class ApplicationManager {
 
     private final Properties properties;
     private WebDriver wd;
-
     private SessionHelper sessionHelper;
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private String fileFirefox = "c:\\Firefox_for_course\\firefox.exe";
     private String browser;
 
     public ApplicationManager(String browser) {
@@ -41,7 +38,7 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
 
         if(browser.equals(BrowserType.FIREFOX)){
-            FirefoxBinary binary = new FirefoxBinary(new File(fileFirefox));
+            FirefoxBinary binary = new FirefoxBinary(new File(properties.getProperty("browser.firefoxFolder")));
             wd = new FirefoxDriver(binary, new FirefoxProfile());
             wd.manage().window().maximize();
             wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

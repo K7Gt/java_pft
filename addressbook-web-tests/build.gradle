@@ -12,6 +12,7 @@ dependencies {
     compile 'com.beust:jcommander:1.64'
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'ch.qos.logback:logback-classic:1.2.2'
 }
 
 task testGroups(type: Test) {
