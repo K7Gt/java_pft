@@ -9,6 +9,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
 
+    private final Properties properties;
     private WebDriver wd;
 
     private SessionHelper sessionHelper;
@@ -23,18 +28,18 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private String fileFirefox = "c:\\Firefox_for_course\\firefox.exe";
-    private String url = "http://localhost/addressbook/";
-    private String login = "admin";
-    private String password = "secret";
     private String browser;
 
     public ApplicationManager(String browser) {
-
         this.browser = browser;
+        properties = new Properties();
     }
 
 
-    public void init() {
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
+
         if(browser.equals(BrowserType.FIREFOX)){
             FirefoxBinary binary = new FirefoxBinary(new File(fileFirefox));
             wd = new FirefoxDriver(binary, new FirefoxProfile());
@@ -47,12 +52,12 @@ public class ApplicationManager {
             wd = new InternetExplorerDriver();
             wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         }
-        wd.get(url);
+        wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         contactHelper = new ContactHelper(wd);
         sessionHelper = new SessionHelper(wd);
-        sessionHelper.login(login, password);
+        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
     }
 
 
