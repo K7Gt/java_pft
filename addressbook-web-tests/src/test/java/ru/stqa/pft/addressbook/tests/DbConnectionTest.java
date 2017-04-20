@@ -17,6 +17,7 @@ public class DbConnectionTest {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
                     + "&user=root&password=");
+            //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT group_id,group_name,group_header,group_footer FROM group_list");
             Groups groups = new Groups();
