@@ -3,59 +3,115 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id = 0;
+
     @Expose
+    @Column(name = "firstname")
     private String contactName;
+
     @Expose
+    @Column(name = "middlename")
     private String contactMiddleName;
+
     @Expose
+    @Column(name = "lastname")
     private String contactLastName;
+
     @Expose
+    @Column(name = "nickname")
     private String contactNickname;
+
     @Expose
+    @Column(name = "title")
     private String contactTitle;
+
     @Expose
+    @Column(name = "company")
     private String contactCompany;
+
     @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String contactCompanyAddress;
+
     @Expose
+    @Column(name = "home")
+    @Type(type = "text")
     private String contactHomePhone;
+
     @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String contactMobilePhone;
+
     @Expose
+    @Column(name = "work ")
+    @Type(type = "text")
     private String contactWorkPhone;
+
     @Expose
+    @Column(name = "fax ")
+    @Type(type = "text")
     private String contactFax;
+
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String contactEmail1;
+
     @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String contactEmail2;
+
     @Expose
+    @Column(name = "email3")
+    @Type(type = "text")
     private String contactEmail3;
+
     @Expose
+    @Column(name = "homepage")
+    @Type(type = "text")
     private String contactHomepage;
+
+    @Transient
     private String group;
+
+    @Transient
     private String allPhones;
+    @Transient
     private String allEmails;
+    @Transient
     private String fullName;
+    @Transient
     private String contactSummary;
 
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
+
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
-    private File photo;
+
 
     public int getId() { return id; }
 
@@ -269,25 +325,7 @@ public class ContactData {
         return "ContactData{" +
                 "id=" + id +
                 ", contactName='" + contactName + '\'' +
-                ", contactMiddleName='" + contactMiddleName + '\'' +
                 ", contactLastName='" + contactLastName + '\'' +
-                ", contactNickname='" + contactNickname + '\'' +
-                ", contactTitle='" + contactTitle + '\'' +
-                ", contactCompany='" + contactCompany + '\'' +
-                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
-                ", contactHomePhone='" + contactHomePhone + '\'' +
-                ", contactMobilePhone='" + contactMobilePhone + '\'' +
-                ", contactWorkPhone='" + contactWorkPhone + '\'' +
-                ", contactFax='" + contactFax + '\'' +
-                ", contactEmail1='" + contactEmail1 + '\'' +
-                ", contactEmail2='" + contactEmail2 + '\'' +
-                ", contactEmail3='" + contactEmail3 + '\'' +
-                ", contactHomepage='" + contactHomepage + '\'' +
-                ", group='" + group + '\'' +
-                ", allPhones='" + allPhones + '\'' +
-                ", allEmails='" + allEmails + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", contactSummary='" + contactSummary + '\'' +
                 '}';
     }
 
