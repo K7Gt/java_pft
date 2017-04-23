@@ -58,10 +58,10 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroupsFromJson")
     public void testGroupCreation(GroupData group) {
         app.gotTo().groupPage();
-        Groups before = app.group().all();
+        Groups before = app.db().groups();
         app.group().create(group);
         assertThat(app.group().Count(), equalTo(before.size() + 1));
-        Groups after = app.group().all();
+        Groups after = app.db().groups();
 //         В случае проверки по id, в противном случае в конструкторе присваиваем максимальное значение и убираем из сравнения id
 //        group.withId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());  поиск максимального значения id при помощи компоратора и превращения списка в поток
 
@@ -77,11 +77,11 @@ public class GroupCreationTests extends TestBase {
     @Test(enabled = false)
     public void testBadGroupCreation() {
         app.gotTo().groupPage();
-        Groups before = app.group().all();
+        Groups before = app.db().groups();
         GroupData group = new GroupData().withName("test'");
         app.group().create(group);
         assertThat(app.group().Count(), equalTo(before.size()));
-        Groups after = app.group().all();
+        Groups after = app.db().groups();
         //assertThat(after.size(),equalTo(before.size()));
         assertThat(after, equalTo(before));
 

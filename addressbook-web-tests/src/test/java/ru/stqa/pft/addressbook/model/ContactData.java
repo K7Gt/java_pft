@@ -98,6 +98,7 @@ public class ContactData {
     @Transient
     private String contactSummary;
 
+    @Transient
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
@@ -309,14 +310,51 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
-        return contactCompanyAddress != null ? contactCompanyAddress.equals(that.contactCompanyAddress) : that.contactCompanyAddress == null;
+        if (contactMiddleName != null ? !contactMiddleName.equals(that.contactMiddleName) : that.contactMiddleName != null)
+            return false;
+        if (contactLastName != null ? !contactLastName.equals(that.contactLastName) : that.contactLastName != null)
+            return false;
+        if (contactNickname != null ? !contactNickname.equals(that.contactNickname) : that.contactNickname != null)
+            return false;
+        if (contactTitle != null ? !contactTitle.equals(that.contactTitle) : that.contactTitle != null) return false;
+        if (contactCompany != null ? !contactCompany.equals(that.contactCompany) : that.contactCompany != null)
+            return false;
+        if (contactCompanyAddress != null ? !contactCompanyAddress.equals(that.contactCompanyAddress) : that.contactCompanyAddress != null)
+            return false;
+        if (contactHomePhone != null ? !contactHomePhone.equals(that.contactHomePhone) : that.contactHomePhone != null)
+            return false;
+        if (contactMobilePhone != null ? !contactMobilePhone.equals(that.contactMobilePhone) : that.contactMobilePhone != null)
+            return false;
+        if (contactWorkPhone != null ? !contactWorkPhone.equals(that.contactWorkPhone) : that.contactWorkPhone != null)
+            return false;
+        if (contactFax != null ? !contactFax.equals(that.contactFax) : that.contactFax != null) return false;
+        if (contactEmail1 != null ? !contactEmail1.equals(that.contactEmail1) : that.contactEmail1 != null)
+            return false;
+        if (contactEmail2 != null ? !contactEmail2.equals(that.contactEmail2) : that.contactEmail2 != null)
+            return false;
+        if (contactEmail3 != null ? !contactEmail3.equals(that.contactEmail3) : that.contactEmail3 != null)
+            return false;
+        return contactHomepage != null ? contactHomepage.equals(that.contactHomepage) : that.contactHomepage == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
+        result = 31 * result + (contactMiddleName != null ? contactMiddleName.hashCode() : 0);
+        result = 31 * result + (contactLastName != null ? contactLastName.hashCode() : 0);
+        result = 31 * result + (contactNickname != null ? contactNickname.hashCode() : 0);
+        result = 31 * result + (contactTitle != null ? contactTitle.hashCode() : 0);
+        result = 31 * result + (contactCompany != null ? contactCompany.hashCode() : 0);
         result = 31 * result + (contactCompanyAddress != null ? contactCompanyAddress.hashCode() : 0);
+        result = 31 * result + (contactHomePhone != null ? contactHomePhone.hashCode() : 0);
+        result = 31 * result + (contactMobilePhone != null ? contactMobilePhone.hashCode() : 0);
+        result = 31 * result + (contactWorkPhone != null ? contactWorkPhone.hashCode() : 0);
+        result = 31 * result + (contactFax != null ? contactFax.hashCode() : 0);
+        result = 31 * result + (contactEmail1 != null ? contactEmail1.hashCode() : 0);
+        result = 31 * result + (contactEmail2 != null ? contactEmail2.hashCode() : 0);
+        result = 31 * result + (contactEmail3 != null ? contactEmail3.hashCode() : 0);
+        result = 31 * result + (contactHomepage != null ? contactHomepage.hashCode() : 0);
         return result;
     }
 
@@ -325,7 +363,21 @@ public class ContactData {
         return "ContactData{" +
                 "id=" + id +
                 ", contactName='" + contactName + '\'' +
+                ", contactMiddleName='" + contactMiddleName + '\'' +
                 ", contactLastName='" + contactLastName + '\'' +
+                ", contactNickname='" + contactNickname + '\'' +
+                ", contactTitle='" + contactTitle + '\'' +
+                ", contactCompany='" + contactCompany + '\'' +
+                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
+                ", contactHomePhone='" + contactHomePhone + '\'' +
+                ", contactMobilePhone='" + contactMobilePhone + '\'' +
+                ", contactWorkPhone='" + contactWorkPhone + '\'' +
+                ", contactFax='" + contactFax + '\'' +
+                ", contactEmail1='" + contactEmail1 + '\'' +
+                ", contactEmail2='" + contactEmail2 + '\'' +
+                ", contactEmail3='" + contactEmail3 + '\'' +
+                ", contactHomepage='" + contactHomepage + '\'' +
+                ", group='" + group + '\'' +
                 '}';
     }
 

@@ -24,12 +24,15 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContactForm(ContactData contactData, boolean creation) {
+    public void fillContactForm(ContactData contactData, boolean creation){
         type(By.name("firstname"), contactData.getContactName());
         type(By.name("middlename"), contactData.getContactMiddleName());
         type(By.name("lastname"), contactData.getContactLastName());
         type(By.name("nickname"), contactData.getContactNickname());
-        attach(By.name("photo"),contactData.getPhoto());
+        try {
+            attach(By.name("photo"),contactData.getPhoto());
+        } catch (NullPointerException e) {
+        }
         type(By.name("title"), contactData.getContactTitle());
         type(By.name("company"), contactData.getContactCompany());
         type(By.name("address"), contactData.getContactCompanyAddress());
