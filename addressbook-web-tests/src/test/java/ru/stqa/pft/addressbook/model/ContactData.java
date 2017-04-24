@@ -334,7 +334,11 @@ public class ContactData {
             return false;
         if (contactEmail3 != null ? !contactEmail3.equals(that.contactEmail3) : that.contactEmail3 != null)
             return false;
-        return contactHomepage != null ? contactHomepage.equals(that.contactHomepage) : that.contactHomepage == null;
+        if (contactHomepage != null ? !contactHomepage.equals(that.contactHomepage) : that.contactHomepage != null)
+            return false;
+        if (group != null ? !group.equals(that.group) : that.group != null) return false;
+        if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
+        return allEmails != null ? allEmails.equals(that.allEmails) : that.allEmails == null;
     }
 
     @Override
@@ -355,6 +359,9 @@ public class ContactData {
         result = 31 * result + (contactEmail2 != null ? contactEmail2.hashCode() : 0);
         result = 31 * result + (contactEmail3 != null ? contactEmail3.hashCode() : 0);
         result = 31 * result + (contactHomepage != null ? contactHomepage.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
+        result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
         return result;
     }
 
@@ -378,6 +385,11 @@ public class ContactData {
                 ", contactEmail3='" + contactEmail3 + '\'' +
                 ", contactHomepage='" + contactHomepage + '\'' +
                 ", group='" + group + '\'' +
+                ", allPhones='" + allPhones + '\'' +
+                ", allEmails='" + allEmails + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", contactSummary='" + contactSummary + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 

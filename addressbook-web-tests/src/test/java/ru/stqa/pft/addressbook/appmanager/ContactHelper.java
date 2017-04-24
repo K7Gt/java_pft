@@ -182,8 +182,8 @@ public class ContactHelper extends HelperBase {
                     .collect(Collectors.joining("\n"));
             String allPhones = cells.get(5).getText();
             String homePage;
-            if(isElementPresent(By.tagName("td[10]"))){
-                homePage = cells.get(9).findElement(By.tagName("a")).getAttribute("href");
+            if(isElementPresent(By.xpath("//td[10]/a"))){
+                homePage = cells.get(9).findElement(By.tagName("a")).getAttribute("href").replaceAll("http://","").replaceAll("/","");
             }else homePage = null;
             //String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()

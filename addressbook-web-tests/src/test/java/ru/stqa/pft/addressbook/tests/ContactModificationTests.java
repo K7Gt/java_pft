@@ -64,6 +64,8 @@ public class ContactModificationTests extends TestBase {
         ContactData contactFromDb = app.db().contactById(contact.getId()) ;
 
         assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contactFromDb)));
+
+        verifyContactListUI();
     }
 
 }
