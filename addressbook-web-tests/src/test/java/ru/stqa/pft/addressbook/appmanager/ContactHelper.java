@@ -7,8 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -45,8 +49,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("email3"), contactData.getContactEmail3());
         type(By.name("homepage"), contactData.getContactHomepage());
         if(creation){
-            if(getSizeOfList() > 1 && wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option[contains(text(),\'" + contactData.getGroup() +"\')]")).size() != 0) {
-                new Select (wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if(contactData.getGroups().size() > 0 /*&& wd.findElements(By.xpath("html/body/div[1]/div[4]/form/select[5]/option[contains(text(),\'"
+                    + contactData.getGroups().iterator().next().getGroupName() +"\')]")).size() != 0*/) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select (wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getGroupName());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -139,7 +145,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("html/body/div[1]/div[4]/form[2]/div[2]/input"));
     }
 
-    private void selectContactById(int id) {
+    public void selectContactById(int id) {
         wd.findElement(By.xpath("//input[@value = '" + id + "']")).click();
     }
 
@@ -162,12 +168,13 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]"));
     }
 
-    Contacts contactCache = null;
+    public Contacts contactCache = null;
 
     public Contacts all() {
         if(contactCache != null){
             return new Contacts(contactCache);
         }
+        int numRow = 2;
         contactCache = new Contacts();
         List<WebElement> rows = wd.findElements(By.xpath("//tr[@name = 'entry']"));
         for(WebElement row: rows){
@@ -181,10 +188,11 @@ public class ContactHelper extends HelperBase {
                     .filter((s -> !s.equals("")))
                     .collect(Collectors.joining("\n"));
             String allPhones = cells.get(5).getText();
-            String homePage;
-            if(isElementPresent(By.xpath("//td[10]/a"))){
+            String homePage ;
+            if(isElementPresent(By.xpath("//tr["+numRow +"]/td[10]/a"))){
                 homePage = cells.get(9).findElement(By.tagName("a")).getAttribute("href").replaceAll("http://","").replaceAll("/","");
             }else homePage = null;
+            numRow++;
             //String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData()
                     .withId(id)
@@ -205,4 +213,26 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.xpath("//tr[@name = 'entry']")).size();
     }
 
+    public void deleteContactFromGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        click(By.name("remove"));
+    }
+
+    public void selectDeletedGroupFromList(GroupData group){
+//        new Select(wd.findElement(By.xpath("//select[@name = 'group']"))).selectByValue(String.valueOf(group.getId()));
+        new Select(wd.findElement(By.xpath("//select[@name = 'group']"))).selectByVisibleText(group.getGroupName());
+    }
+
+    public void contactToGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        Set<String> groupsList = wd.findElements(By.xpath("//select[@name='to_group']/option")).stream().map((s) -> s.getText()).collect(Collectors.toSet());
+        for (GroupData g : contact.getGroups()){
+           String grName = g.getGroupName();
+           groupsList.remove(grName);
+        }
+        new Select(wd.findElement(By.xpath("//select[@name = 'to_group']"))).selectByVisibleText(groupsList.iterator().next());
+        click(By.xpath("//input[@name = 'add']"));
+
+
+    }
 }

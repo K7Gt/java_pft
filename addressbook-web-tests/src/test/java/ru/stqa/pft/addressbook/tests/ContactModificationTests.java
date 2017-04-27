@@ -32,7 +32,7 @@ public class ContactModificationTests extends TestBase {
                     .withContactFax("1111111")
                     .withContactEmail1("test@gmail.com")
                     .withContactHomepage("test.com")
-                    .withGroup("test1"));
+                   /* .withGroup("test1")*/);
             app.gotTo().homePage();
         }
     }

@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -86,8 +89,6 @@ public class ContactData {
     @Type(type = "text")
     private String contactHomepage;
 
-    @Transient
-    private String group;
 
     @Transient
     private String allPhones;
@@ -103,6 +104,13 @@ public class ContactData {
     @Type(type = "text")
     private String photo;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
     public File getPhoto() {
         return new File(photo);
     }
@@ -112,7 +120,14 @@ public class ContactData {
         return this;
     }
 
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
 
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
 
     public int getId() { return id; }
 
@@ -168,9 +183,7 @@ public class ContactData {
         return contactHomepage;
     }
 
-    public String getGroup() {
-        return group;
-    }
+
 
     public String getFullName() {
         return fullName;
@@ -276,10 +289,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
 
     public ContactData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
@@ -336,9 +345,9 @@ public class ContactData {
             return false;
         if (contactHomepage != null ? !contactHomepage.equals(that.contactHomepage) : that.contactHomepage != null)
             return false;
-        if (group != null ? !group.equals(that.group) : that.group != null) return false;
         if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
-        return allEmails != null ? allEmails.equals(that.allEmails) : that.allEmails == null;
+        if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
+        return photo != null ? photo.equals(that.photo) : that.photo == null;
     }
 
     @Override
@@ -359,9 +368,9 @@ public class ContactData {
         result = 31 * result + (contactEmail2 != null ? contactEmail2.hashCode() : 0);
         result = 31 * result + (contactEmail3 != null ? contactEmail3.hashCode() : 0);
         result = 31 * result + (contactHomepage != null ? contactHomepage.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
         result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
         result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
     }
 
@@ -371,25 +380,22 @@ public class ContactData {
                 "id=" + id +
                 ", contactName='" + contactName + '\'' +
                 ", contactMiddleName='" + contactMiddleName + '\'' +
-                ", contactLastName='" + contactLastName + '\'' +
-                ", contactNickname='" + contactNickname + '\'' +
-                ", contactTitle='" + contactTitle + '\'' +
-                ", contactCompany='" + contactCompany + '\'' +
-                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
-                ", contactHomePhone='" + contactHomePhone + '\'' +
-                ", contactMobilePhone='" + contactMobilePhone + '\'' +
-                ", contactWorkPhone='" + contactWorkPhone + '\'' +
-                ", contactFax='" + contactFax + '\'' +
-                ", contactEmail1='" + contactEmail1 + '\'' +
-                ", contactEmail2='" + contactEmail2 + '\'' +
-                ", contactEmail3='" + contactEmail3 + '\'' +
-                ", contactHomepage='" + contactHomepage + '\'' +
-                ", group='" + group + '\'' +
-                ", allPhones='" + allPhones + '\'' +
-                ", allEmails='" + allEmails + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", contactSummary='" + contactSummary + '\'' +
-                ", photo='" + photo + '\'' +
+//                ", contactLastName='" + contactLastName + '\'' +
+//                ", contactNickname='" + contactNickname + '\'' +
+//                ", contactTitle='" + contactTitle + '\'' +
+//                ", contactCompany='" + contactCompany + '\'' +
+//                ", contactCompanyAddress='" + contactCompanyAddress + '\'' +
+//                ", contactHomePhone='" + contactHomePhone + '\'' +
+//                ", contactMobilePhone='" + contactMobilePhone + '\'' +
+//                ", contactWorkPhone='" + contactWorkPhone + '\'' +
+//                ", contactFax='" + contactFax + '\'' +
+//                ", contactEmail1='" + contactEmail1 + '\'' +
+//                ", contactEmail2='" + contactEmail2 + '\'' +
+//                ", contactEmail3='" + contactEmail3 + '\'' +
+//                ", contactHomepage='" + contactHomepage + '\'' +
+//                ", contactSummary='" + contactSummary + '\'' +
+//                ", photo='" + photo + '\'' +
+                ", groups=" + groups +
                 '}';
     }
 
