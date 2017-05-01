@@ -1,7 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by Golem on 30.04.2017.
