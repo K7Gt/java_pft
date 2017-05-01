@@ -632,7 +632,7 @@ $g_show_user_realname_threshold = NOBODY;
  * PHPMAILER_METHOD_SMTP - SMTP
  * @global integer $g_phpMailer_method
  */
-$g_phpMailer_method = PHPMAILER_METHOD_MAIL;
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
 
 /**
  * Remote SMTP Host(s)
