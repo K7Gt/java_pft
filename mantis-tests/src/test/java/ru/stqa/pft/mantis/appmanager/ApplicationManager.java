@@ -27,6 +27,8 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private NavigationHelper navigationHelper;
+    private UsersHelper usersHelper;
 
 
     public ApplicationManager(String browser) {
@@ -46,8 +48,23 @@ public class ApplicationManager {
         }
     }
 
+    public UsersHelper user(){
+        if(usersHelper == null){
+            usersHelper = new UsersHelper(this);
+        }
+        return usersHelper;
+    }
+
+
     public HttpSession newSession(){
         return new HttpSession(this);
+    }
+
+    public NavigationHelper goTo(){
+        if(navigationHelper == null){
+            navigationHelper = new NavigationHelper(this);
+        }
+        return navigationHelper;
     }
 
     public String getProperty(String key) {
