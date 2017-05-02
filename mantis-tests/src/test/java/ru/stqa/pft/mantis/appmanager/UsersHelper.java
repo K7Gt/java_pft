@@ -38,11 +38,16 @@ public class UsersHelper extends HelperBase {
     public Users selectUser(String name) {
         List<Users> usersList = all();
         Users user = null;
-        for(Users u: usersList){
-            if (u.getName().equals(name)){
+        for (int i = 0; i < usersList.size(); i++) {
+            if (usersList.get(i).getName().equals(name)){
                 click(By.xpath(String.format("//a[.='%s']",name)));
-                user = u;
+                user = usersList.get(i);
                 break;
+            } else{
+                if(i == usersList.size()-1){
+                    click(By.xpath(String.format("//a[.='%s']",usersList.get(i).getName())));
+                    user = usersList.get(i);
+                }
             }
         }
         return user;
@@ -52,8 +57,9 @@ public class UsersHelper extends HelperBase {
         click(By.xpath("//input[@value ='Сбросить пароль']"));
     }
 
-    public void resetPasswordFromUser(String userName) {
-        selectUser(userName);
+    public Users resetPasswordFromUser(String userName) {
+        Users user = selectUser(userName);
         resetPassword();
+        return user;
     }
 }

@@ -29,6 +29,7 @@ public class ApplicationManager {
     private MailHelper mailHelper;
     private NavigationHelper navigationHelper;
     private UsersHelper usersHelper;
+    private DbHelper dbHelper;
 
 
     public ApplicationManager(String browser) {
@@ -58,6 +59,13 @@ public class ApplicationManager {
 
     public HttpSession newSession(){
         return new HttpSession(this);
+    }
+
+    public DbHelper db(){
+        if(dbHelper == null){
+            dbHelper = new DbHelper();
+        }
+        return dbHelper;
     }
 
     public NavigationHelper goTo(){

@@ -1,12 +1,29 @@
 package ru.stqa.pft.mantis.model;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+
 /**
  * Created by Golem on 01.05.2017.
  */
+
+@Entity
+@Table(name = "mantis_user_table")
 public class Users {
+    @Id
+    @Column(name = "id")
     private int id = 0;
+
+    @Column(name = "username")
+//    @Type(type = "text")
     private String name;
+
+    @Column(name = "email")
+//    @Type(type = "text")
     private String eMail;
+
+    @Transient
     private String password;
 
     public String getName() {
