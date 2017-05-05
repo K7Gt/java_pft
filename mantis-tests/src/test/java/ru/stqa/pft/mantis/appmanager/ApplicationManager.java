@@ -31,6 +31,7 @@ public class ApplicationManager {
     private UsersHelper usersHelper;
     private DbHelper dbHelper;
     private JamesHelper jamesHelper;
+    private SoapHelper soapHelper;
 
 
     public ApplicationManager(String browser) {
@@ -125,5 +126,12 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
+    }
+
+    public SoapHelper soap(){
+        if (soapHelper == null){
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 }
