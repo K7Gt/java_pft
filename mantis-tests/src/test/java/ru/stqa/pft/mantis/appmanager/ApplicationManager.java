@@ -30,6 +30,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private UsersHelper usersHelper;
     private DbHelper dbHelper;
+    private JamesHelper jamesHelper;
 
 
     public ApplicationManager(String browser) {
@@ -91,6 +92,13 @@ public class ApplicationManager {
             ftp = new FtpHelper(this);
         }
         return ftp;
+    }
+
+    public JamesHelper james(){
+        if (jamesHelper == null){
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
     }
 
     public MailHelper mail(){
