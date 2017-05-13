@@ -9,6 +9,8 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
+    private int state;
+    private String state_name;
 
     public int getId() {
         return id;
@@ -19,8 +21,26 @@ public class Issue {
         return this;
     }
 
+    public Issue withState(int state){
+        this.state = state;
+        return this;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public String getState_name() {
+        return state_name;
+    }
+
     public String getSummary() {
         return summary;
+    }
+
+    public Issue withStateName(String stateName){
+        this.state_name = stateName;
+        return this;
     }
 
     public Issue withSummary(String summary) {

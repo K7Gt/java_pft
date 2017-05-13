@@ -34,16 +34,27 @@ public class TestBase {
         app.stop();
     }
 
-    public boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-        String status = app.soap().getStatusOfIssueById(issueId);
+
+    /*
+    * Mantis - true
+    * Bugify - false
+    * */
+
+    public boolean isIssueOpen(int issueId,boolean btCode) throws IOException, ServiceException {
+        String status;
+
+        if (btCode == true) {
+            status = app.soap().getStatusOfIssueById(issueId).toLowerCase();
+        } else status = app.rest().getStatusNameOfIssueById(issueId).toLowerCase();
+
         if(status.equals("resolved")){
             return false;
         }else return true;
     }
 
-    public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-        if (isIssueOpen(issueId)) {
-            System.out.println("Ignored because of issue " + issueId);
+    public void skipIfNotFixed(int issueId,boolean btCode ) throws IOException, ServiceException {
+        if (isIssueOpen(issueId, btCode)) {
+            System.out.println("Ignored because of issue: " + issueId + " is still not resolved");
             throw new SkipException("Ignored because of issue " + issueId);
 
         }

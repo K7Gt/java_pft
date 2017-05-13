@@ -8,6 +8,7 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
+    private int state;
 
     public int getId() {
         return id;
@@ -23,6 +24,11 @@ public class Issue {
 
     public Issue withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public Issue withState(int state){
+        this.state = state;
         return this;
     }
 
@@ -42,6 +48,7 @@ public class Issue {
                 "id=" + id +
                 ", subject='" + subject + '\'' +
                 ", description='" + description + '\'' +
+                ", state=" + state +
                 '}';
     }
 

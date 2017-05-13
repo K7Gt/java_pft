@@ -27,15 +27,24 @@ public class RestAssuredTests {
         RestAssured.authentication = RestAssured.basic("LSGjeU4yP1X493ud1hNniA==","");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testCreateIssue() throws IOException {
         Set<Issue> oldIssues = getIssues();
+
         Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
         int issueId = createIssue(newIssue);
         Set<Issue> newIssues = getIssues();
         oldIssues.add(newIssue.withId(issueId));
         assertEquals(newIssues, oldIssues);
 
+    }
+
+    @Test
+    public void tesTest() throws IOException {
+        Set<Issue> oldIssues = getIssues();
+        for(Issue i: oldIssues){
+            System.out.println(i);
+        }
     }
 
 
