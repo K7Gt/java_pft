@@ -19,7 +19,7 @@ public class PointTests {
      public void test2(){
         Point p1 = new Point(0,1);
         Point p2 = new Point(0,4);
-       Assert.assertEquals(p1.distance(p2),4.0);
+       Assert.assertEquals(p1.distance(p2),3.0);
     }
     @Test
      public void test3(){
